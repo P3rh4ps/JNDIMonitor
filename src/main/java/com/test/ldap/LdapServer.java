@@ -76,6 +76,9 @@ public class LdapServer extends InMemoryOperationInterceptor {
     @Override
     public void processSearchResult(InMemoryInterceptedSearchResult result) {
         String base1 = result.getRequest().getBaseDN();
+        if(strFind(base1, new File("./tmp.txt"))) {
+            return;
+        }
         Field a = null;
         try {
             a = getField(result,"clientConnection");
